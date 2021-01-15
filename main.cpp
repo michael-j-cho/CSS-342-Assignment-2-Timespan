@@ -8,8 +8,9 @@ using namespace std;
 
 void test() {
 
-TimeSpan ts(1, 20, 30);
+TimeSpan ts(1.3, 20.99, 3065412);
 cout << ts;
+cout << endl << ts.getHour();
 
 }
 
