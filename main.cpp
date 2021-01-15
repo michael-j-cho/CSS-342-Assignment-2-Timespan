@@ -6,6 +6,13 @@
 
 using namespace std;
 
+void test() {
+
+TimeSpan ts(1, 20, 30);
+cout << ts;
+
+}
+
 // testing constructor
 void test1() {
   TimeSpan ts(1, 20, 30);
@@ -59,9 +66,10 @@ void test3() {
 }
 
 int main() {
-  test1();
-  test2();
-  test3();
+  test();
+  // test1();
+  // test2();
+  // test3();
   cout << "Done." << std::endl;
   return 0;
 }

@@ -47,6 +47,11 @@ public:
   bool isPositive() const;
 
 private:
+
+  double hour;
+  double minute;
+  double second;
+
 };
 
 #endif // ASS2_TIMESPAN_H

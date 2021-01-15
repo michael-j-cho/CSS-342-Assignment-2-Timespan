@@ -4,13 +4,22 @@
 
 #include "timespan.h"
 
-ostream &operator<<(ostream &out, const TimeSpan &ts) { return out; }
+ostream &operator<<(ostream &out, const TimeSpan &ts) { 
+  out << ts.hour << ":" << ts.minute << ":" << ts.second << endl;
+  return out; 
+  }
 
 // explicit TimeSpan(int Hour = 0, int Minute = 0, int Second = 0);
-TimeSpan::TimeSpan(double hour, double minute, double second) {}
+TimeSpan::TimeSpan(double hour, double minute, double second) {
+  this->hour = hour;
+  this->minute = minute;
+  this->second = second;
+}
 
 // hour component
-int TimeSpan::getHour() const { return 0; }
+int TimeSpan::getHour() const { 
+  
+  return 0; }
 
 // minute component
 int TimeSpan::getMinute() const { return 0; }
