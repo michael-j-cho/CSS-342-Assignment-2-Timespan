@@ -3,35 +3,27 @@
 //
 
 #include "timespan.h"
+#include <iomanip>
 
 ostream &operator<<(ostream &out, const TimeSpan &ts) {
-
-  if(ts.minute <= 10) {
-    out << ts.hour << ":0" << ts.minute << ":" << ts.second << endl;
+    out << ts.hour << ":" << 
+    setw(2) << setfill('0') << ts.minute << ":" << 
+    setw(2) << setfill('0') << ts.second << endl;
     return out; 
-  } else {
-    out << ts.hour << ":" << ts.minute << ":" << ts.second << endl;
-    return out;
-  }
 }
 
 // explicit TimeSpan(int Hour = 0, int Minute = 0, int Second = 0);
 TimeSpan::TimeSpan(double hour, double minute, double second) {
-  this->hour = (int)hour;
-  this->minute = (hour - (int)hour) * 60 + minute;
-  this->second = (minute - (int)minute) * 60 + second;
+  this->hour = 0;
+  this->minute = 0;
+  this->second = 0;
 
-  if (this->second >= 60) {
-    int tempMins = this->second / 60;
-    this->second %= 60;
-    this->minute += tempMins;
-  }
-  if (this->minute >= 60) {
-    int tempHours = this->minute / 60;
-    this->minute %= 60;
-    this->hour += tempHours;
-  }
-  this->hour %= 24;
+  double tempSec = ((hour * 60) + minute) * 60 + second;
+  double mins = tempSec / 60;
+  this->second = (int)tempSec % 60;
+  this->minute += (int)mins;
+  this->hour = this->minute / 60;
+  this->minute %= 60;
 }
 
 // hour component
