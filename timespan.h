@@ -16,6 +16,10 @@ public:
   // explicit TimeSpan(int Hour = 0, int Minute = 0, int Second = 0);
   explicit TimeSpan(double hour = 0, double minute = 0, double second = 0);
 
+  int convertToSeconds(double hour = 0, double minute = 0, double second = 0) const;
+
+  TimeSpan formatTime();
+
   // add
   TimeSpan operator+(const TimeSpan &ts) const;
 

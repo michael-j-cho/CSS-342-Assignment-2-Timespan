@@ -5,10 +5,12 @@
 #include "timespan.h"
 #include <iomanip>
 
+#define errCheck1 1
+
 ostream &operator<<(ostream &out, const TimeSpan &ts) {
-  out << ts.hour << ":" << 
-  setw(2) << setfill('0') << ts.minute << ":" << 
-  setw(2) << setfill('0') << ts.second;
+  out << ts.getHour() << ":" << setw(2) << setfill('0') 
+  << ts.getMinute() << ":" << setw(2) << setfill('0') 
+  << ts.getSecond();
   return out; 
 }
 
@@ -18,12 +20,27 @@ TimeSpan::TimeSpan(double hour, double minute, double second) {
   this->minute = 0;
   this->second = 0;
 
-  double tempSec = ((hour * 60) + minute) * 60 + second;
+  double tempSec = convertToSeconds(hour, minute, second);
   double mins = tempSec / 60;
   this->second = (int)tempSec % 60;
   this->minute += (int)mins;
   this->hour = this->minute / 60;
   this->minute %= 60;
+}
+
+int TimeSpan::convertToSeconds(double hour, double minute, double second) const {
+  double allSeconds = ((hour * 60) + minute) * 60 + second;
+  return (int)allSeconds;
+}
+
+TimeSpan TimeSpan::formatTime() {
+  double tempSec = getSecond();
+  double mins = tempSec / 60;
+  this->second = (int)tempSec % 60;
+  this->minute += (int)mins;
+  this->hour = this->minute / 60;
+  this->minute %= 60;
+  return *this;
 }
 
 // hour component
@@ -46,24 +63,43 @@ bool TimeSpan::isPositive() const { return true; }
 
 // add
 TimeSpan TimeSpan::operator+(const TimeSpan &ts) const {
-  TimeSpan tsSum;
+  int seconds = convertToSeconds(ts.hour, ts.minute, ts.second) + convertToSeconds(this->hour, this->minute, this->second);
+  TimeSpan tsSum(0,0,0);
+  tsSum.second = seconds;
+  tsSum.formatTime();
   return tsSum;
 }
 
 // subtract
 TimeSpan TimeSpan::operator-(const TimeSpan &ts) const {
-  TimeSpan tsSub;
+  int seconds = convertToSeconds(this->hour, this->minute, this->second) - convertToSeconds(ts.hour, ts.minute, ts.second);
+  TimeSpan tsSub(0,0,0);
+  tsSub.second = seconds;
+  tsSub.formatTime();
   return tsSub;
 }
 
 // multiply with an integer
 TimeSpan TimeSpan::operator*(unsigned int number) const {
-  TimeSpan tsLarge;
+  int seconds = number * convertToSeconds(this->hour, this->minute, this->second);
+  TimeSpan tsLarge(0,0,0);
+  tsLarge.second = seconds;
+  tsLarge.formatTime();
   return tsLarge;
 }
 
 // equality ==
-bool TimeSpan::operator==(const TimeSpan &ts) const { return true; }
+bool TimeSpan::operator==(const TimeSpan &ts) const {
+  if(ts.getHour() == getHour() && ts.getMinute() == getMinute() && ts.getSecond() == getSecond()) {
+  return true; 
+  }
+  return false;
+}
 
 // inequality !=
-bool TimeSpan::operator!=(const TimeSpan &ts) const { return true; }
+bool TimeSpan::operator!=(const TimeSpan &ts) const {
+  if(ts.getHour() != getHour() || ts.getMinute() != getMinute() || ts.getSecond() != getSecond()) {
+  return true; 
+  }
+  return false;
+}
