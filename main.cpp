@@ -6,40 +6,6 @@
 
 using namespace std;
 
-void test() {
-  TimeSpan ts(1, 20, 30);
-  stringstream ss;
-  ss << ts;
-  // assert(ss.str() == "1:20:30");
-  cout << "1:20:30" << endl;
-  cout << ts;
-
-  TimeSpan ts2(4, -20, -90);
-  ss.str("");
-  ss << ts2;
-  // assert(ss.str() == "3:38:30");
-  cout << "3:38:30" << endl;
-  cout << ts2;
-
-
-  TimeSpan ts3(1.5, 30.5, -90);
-  ss.str("");
-  ss << ts3;
-  // assert(ss.str() == "1:59:00");
-  cout << "1:59:00" << endl;
-  cout << ts3;
-
-
-  TimeSpan ts4(0, 0.07, 0);
-  ss.str("");
-  ss << ts4;
-  // assert(ss.str() == "0:00:04");
-  cout << "0:00:04" << endl;
-  cout << ts4;
-
-  cout << "test1 complete" << endl;
-}
-
 // testing constructor
 void test1() {
   TimeSpan ts(1, 20, 30);
@@ -93,9 +59,8 @@ void test3() {
 }
 
 int main() {
-  test();
-  // test1();
-  // test2();
+  test1();
+  test2();
   // test3();
   cout << "Done." << std::endl;
   return 0;

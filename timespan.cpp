@@ -6,10 +6,10 @@
 #include <iomanip>
 
 ostream &operator<<(ostream &out, const TimeSpan &ts) {
-    out << ts.hour << ":" << 
-    setw(2) << setfill('0') << ts.minute << ":" << 
-    setw(2) << setfill('0') << ts.second << endl;
-    return out; 
+  out << ts.hour << ":" << 
+  setw(2) << setfill('0') << ts.minute << ":" << 
+  setw(2) << setfill('0') << ts.second;
+  return out; 
 }
 
 // explicit TimeSpan(int Hour = 0, int Minute = 0, int Second = 0);
