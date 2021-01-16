@@ -34,7 +34,7 @@ int TimeSpan::convertToSeconds(double hour, double minute, double second) const 
 }
 
 TimeSpan TimeSpan::formatTime() {
-  double tempSec = getSecond();
+  double tempSec = convertToSeconds(this->hour, this->minute, this->second);
   double mins = tempSec / 60;
   this->second = (int)tempSec % 60;
   this->minute += (int)mins;
