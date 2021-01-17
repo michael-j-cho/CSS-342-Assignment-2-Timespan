@@ -54,14 +54,25 @@ void test3() {
   assert(ts1.isPositive() && !ts2.isPositive());
   stringstream ss;
   ss << ts2;
+  cout << ts2 << endl;
   assert(ss.str() == "-0:00:10");
   cout << "test3 complete" << endl;
 }
 
+void test4() {
+  TimeSpan ts(1, 20, 30);
+  TimeSpan ts2(1, 20, 15);
+  cout << "ts < ts2 : " << (ts < ts2) << endl;
+  cout << "ts < ts2 : " << (ts > ts2) << endl;
+  cout << "ts < ts2 : " << (ts <= ts2) << endl;
+  cout << "ts < ts2 : " << (ts >= ts2) << endl;
+}
+
 int main() {
+  test4();
   test1();
   test2();
-  // test3();
+  test3();
   cout << "Done." << std::endl;
   return 0;
 }

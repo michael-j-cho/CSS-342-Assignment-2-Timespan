@@ -35,8 +35,17 @@ public:
   // multiply timespan by an unsigned number
   TimeSpan operator*(unsigned int number) const;
 
-  // TODO(student)
-  // to add operator+=, operator-=, operator<, operator>, operator<=, operator>=
+  TimeSpan operator+=(const TimeSpan &ts);
+
+  TimeSpan operator-=(const TimeSpan &ts);
+
+  bool operator<(const TimeSpan &ts) const;
+
+  bool operator>(const TimeSpan &ts) const;
+
+  bool operator<=(const TimeSpan &ts) const;
+
+  bool operator>=(const TimeSpan &ts) const;
 
   // hour component of timespan
   int getHour() const;
