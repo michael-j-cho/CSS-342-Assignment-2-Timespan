@@ -1,6 +1,9 @@
 //
-// Created by Yusuf Pisan on 4/2/18.
+// Michael Cho 01/06/2021.
 //
+// TimeSpan Class
+//
+
 
 #ifndef ASS2_TIMESPAN_H
 #define ASS2_TIMESPAN_H
@@ -13,38 +16,46 @@ class TimeSpan {
   friend ostream &operator<<(ostream &out, const TimeSpan &ts);
 
 public:
-  // explicit TimeSpan(int Hour = 0, int Minute = 0, int Second = 0);
+  // TimeSpan constructor. Default double values are 0.
   explicit TimeSpan(double hour = 0, double minute = 0, double second = 0);
 
+  // Convert hour, minute, and second into total seconds function. 
   int convertToSeconds(double hour = 0, double minute = 0, double second = 0) const;
 
+  // Time formatting function.
   TimeSpan formatTime();
 
-  // add
+  // Overloaded addition operator.
   TimeSpan operator+(const TimeSpan &ts) const;
 
-  // subtract
+  // Overloaded subtraction operator.
   TimeSpan operator-(const TimeSpan &ts) const;
 
-  // check equality
+  // Overloaded equality operator.
   bool operator==(const TimeSpan &ts) const;
 
-  // check if not equal
+  // Overloaded not equal operator.
   bool operator!=(const TimeSpan &ts) const;
 
-  // multiply timespan by an unsigned number
+  // Overloaded multiplication operator.
   TimeSpan operator*(unsigned int number) const;
 
+  // Overloaded addition assignment operator.
   TimeSpan operator+=(const TimeSpan &ts);
 
+  // Overloaded subtraction assignment operator.
   TimeSpan operator-=(const TimeSpan &ts);
 
+  // Overloaded less than boolean operator.
   bool operator<(const TimeSpan &ts) const;
 
+  // Overloaded greater than boolean operator.
   bool operator>(const TimeSpan &ts) const;
 
+  // Overloaded less than OR equal to operator.
   bool operator<=(const TimeSpan &ts) const;
 
+  // Overloaded greater than OR equal to operator.
   bool operator>=(const TimeSpan &ts) const;
 
   // hour component of timespan
@@ -60,11 +71,10 @@ public:
   bool isPositive() const;
 
 private:
-
+  // Data members for hour, minute, and second for TimeSpan object.
   int hour;
   int minute;
   int second;
-
 };
 
 #endif // ASS2_TIMESPAN_H
