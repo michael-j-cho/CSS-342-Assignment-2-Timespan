@@ -4,17 +4,16 @@
 // TimeSpan Class
 //
 //  This TimeSpan class converts given parameters into a formatted time span.
-//  This class can add or subtract two time spans together, or multiply a 
-//  timespan by a number. This class can also compare two time spans that are 
-//  equal, not equal, less than, greater than, less than or equal to, and greater 
-//  than or equal to each other. There are also functions that convert the time
-//  span into seconds and checks if the time span is positive.
+//  This class can add or subtract two time spans together, or multiply a
+//  timespan by a number. This class can also compare two time spans that are
+//  equal, not equal, less than, greater than, less than or equal to, and
+//  greater than or equal to each other. There are also functions that convert
+//  the time span into seconds and checks if the time span is positive.
 //
 
 #include "timespan.h"
 #include <cmath>
 #include <iomanip>
-
 
 // Overloaded << operator. Uses setw to set each integer with two digits.
 // If the time is negative, the time displays a "-" in front.
@@ -32,7 +31,7 @@ ostream &operator<<(ostream &out, const TimeSpan &ts) {
 
 // TimeSpan constructor sets hour, minute, and second data member to 0.
 // Creates a temp seconds holder and passes in the parameters and converts
-// them all to seconds. Then, the constructor distributes the seconds 
+// them all to seconds. Then, the constructor distributes the seconds
 // into hour, minute and second.
 TimeSpan::TimeSpan(double hour, double minute, double second) {
   this->hour = 0;
@@ -86,7 +85,7 @@ bool TimeSpan::isPositive() const {
 }
 
 // Overloaded + operator. Converts this object and ts object into seconds.
-// Puts total seconds into empty tsSum object and formats time. 
+// Puts total seconds into empty tsSum object and formats time.
 TimeSpan TimeSpan::operator+(const TimeSpan &ts) const {
   int seconds = convertToSeconds(ts.hour, ts.minute, ts.second) +
                 convertToSeconds(this->hour, this->minute, this->second);
@@ -118,9 +117,9 @@ TimeSpan TimeSpan::operator*(unsigned int number) const {
   return tsLarge;
 }
 
-// Overloaded == operator. Boolean that compares hour, minute, and second. Returns
-// true if all are equal and false if any are not equal. All data members must be
-// equal
+// Overloaded == operator. Boolean that compares hour, minute, and second.
+// Returns true if all are equal and false if any are not equal. All data
+// members must be equal
 bool TimeSpan::operator==(const TimeSpan &ts) const {
   if (ts.getHour() == getHour() && ts.getMinute() == getMinute() &&
       ts.getSecond() == getSecond()) {
@@ -129,8 +128,8 @@ bool TimeSpan::operator==(const TimeSpan &ts) const {
   return false;
 }
 
-// Overloaded != operator. Boolean that compares hour, minute, and second. Returns
-// true is any two comparing data members are not equal.
+// Overloaded != operator. Boolean that compares hour, minute, and second.
+// Returns true is any two comparing data members are not equal.
 bool TimeSpan::operator!=(const TimeSpan &ts) const {
   if (ts.getHour() != getHour() || ts.getMinute() != getMinute() ||
       ts.getSecond() != getSecond()) {
@@ -139,9 +138,9 @@ bool TimeSpan::operator!=(const TimeSpan &ts) const {
   return false;
 }
 
-// Overloaded += operator. Converts both to seconds and adds the seconds together.
-// Assigns the seconds into this object (left of +=), formats time, then returns
-// *this object.
+// Overloaded += operator. Converts both to seconds and adds the seconds
+// together. Assigns the seconds into this object (left of +=), formats time,
+// then returns *this object.
 TimeSpan TimeSpan::operator+=(const TimeSpan &ts) {
   int seconds = convertToSeconds(ts.hour, ts.minute, ts.second) +
                 convertToSeconds(this->hour, this->minute, this->second);
@@ -188,7 +187,8 @@ bool TimeSpan::operator>(const TimeSpan &ts) const {
 }
 
 // Overloaded <= operator. Converts both objects into seconds. Returns true if
-// this object is less than ts object OR objects are equal. Otherwise, returns false.
+// this object is less than ts object OR objects are equal. Otherwise, returns
+// false.
 bool TimeSpan::operator<=(const TimeSpan &ts) const {
   if (convertToSeconds(this->hour, this->minute, this->second) <
           convertToSeconds(ts.hour, ts.minute, ts.second) ||
@@ -200,7 +200,8 @@ bool TimeSpan::operator<=(const TimeSpan &ts) const {
 }
 
 // Overloaded >= operator. Converts both objects into seconds. Returns true if
-// this object is greater than ts object OR objects are equal. Otherwise, returns false.
+// this object is greater than ts object OR objects are equal. Otherwise,
+// returns false.
 bool TimeSpan::operator>=(const TimeSpan &ts) const {
   if (convertToSeconds(this->hour, this->minute, this->second) >
           convertToSeconds(ts.hour, ts.minute, ts.second) ||

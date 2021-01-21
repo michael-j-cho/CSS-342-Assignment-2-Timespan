@@ -6,7 +6,7 @@
 
 using namespace std;
 
-// testing constructor
+// Testing constructor.
 void test1() {
   TimeSpan ts(1, 20, 30);
   stringstream ss;
@@ -30,7 +30,7 @@ void test1() {
   cout << "test1 complete" << endl;
 }
 
-// testing equality, addition, subtraction, multiplication
+// Testing equality, addition, subtraction, multiplication.
 void test2() {
   TimeSpan ts(1, 20, 30);
   TimeSpan ts2(1, 20, 30);
@@ -47,6 +47,7 @@ void test2() {
   cout << "test2 complete" << endl;
 }
 
+// Testing isPositive method and negative cout display.
 void test3() {
   TimeSpan ts0(0, 0, 0);
   TimeSpan ts1(0, 0, 10);
@@ -54,25 +55,42 @@ void test3() {
   assert(ts1.isPositive() && !ts2.isPositive());
   stringstream ss;
   ss << ts2;
-  cout << ts2 << endl;
   assert(ss.str() == "-0:00:10");
   cout << "test3 complete" << endl;
 }
 
+// Testing += and -= overloaded assignment operators.
 void test4() {
-  TimeSpan ts(1, 20, 30);
-  TimeSpan ts2(1, 20, 15);
-  cout << "ts < ts2 : " << (ts < ts2) << endl;
-  cout << "ts < ts2 : " << (ts > ts2) << endl;
-  cout << "ts < ts2 : " << (ts <= ts2) << endl;
-  cout << "ts < ts2 : " << (ts >= ts2) << endl;
+  TimeSpan ts1(1, 20, 30);
+  TimeSpan ts2(1, 20, 30);
+  TimeSpan ts3(0, 0, 0);
+  ts3 += ts2;
+  assert(ts3 == ts1);
+  ts3 -= ts2;
+  assert(ts3 != ts1);
+  cout << "test4 complete" << endl;
+}
+
+// Testing <, >, <=, and >= overloaded operators.
+void test5() {
+  TimeSpan ts1(1, 20, 30);
+  TimeSpan ts2(1, 10, 20);
+  TimeSpan ts3(1, 19, 90); // When formatted, ts3 == 01:20:30
+  assert(ts2 < ts1);
+  assert(ts1 > ts2);
+  assert(ts2 <= ts1);
+  assert(ts1 >= ts2);
+  assert(ts1 <= ts3);
+  assert(ts1 >= ts3);
+  cout << "test5 complete" << endl;
 }
 
 int main() {
-  test4();
   test1();
   test2();
   test3();
+  test4();
+  test5();
   cout << "Done." << std::endl;
   return 0;
 }
