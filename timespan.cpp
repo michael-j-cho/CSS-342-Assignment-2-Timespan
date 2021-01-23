@@ -57,10 +57,10 @@ int TimeSpan::convertToSeconds(double hour, double minute,
 // Similar to the time formatting in the constructor. Converts
 // total seconds into hour, minute, and second format.
 TimeSpan TimeSpan::formatTime() {
-  double tempSec = convertToSeconds(this->hour, this->minute, this->second);
-  double mins = tempSec / 60;
-  this->second = (int)tempSec % 60;
-  this->minute += (int)mins;
+  int tempSec = convertToSeconds(this->hour, this->minute, this->second);
+  int mins = tempSec / 60;
+  this->second = tempSec % 60;
+  this->minute += mins;
   this->hour = this->minute / 60;
   this->minute %= 60;
   return *this;
